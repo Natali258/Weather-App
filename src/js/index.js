@@ -1,5 +1,6 @@
 import "../index.html";
-import { mult, sum } from "../modules/calc.js";
+import { mult, sum } from "../modules/calc";
+
 import "../style.css";
 
 console.log(mult(3, 5));
