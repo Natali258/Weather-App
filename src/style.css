@@ -1,0 +1,6 @@
+@import "libs/normalize.css";
+
+body {
+  background-color: aquamarine;
+  user-select: none;
+}
