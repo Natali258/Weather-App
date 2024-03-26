@@ -11,6 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"), // Вказуємо шлях для збірки
     filename: "[name].[contenthash].js", // Вказуємо назву зібраного файлу
+    assetModuleFilename: "assets/[name][ext]",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -27,9 +28,9 @@ module.exports = {
         loader: "html-loader",
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/i, // Обробка файлів CSS//
         use: [
-          "style-loader",
+          "style-loader", // Використання style-loader для включення стилів у HTML та css-loader для обробки CSS//
           "css-loader",
           {
             loader: "postcss-loader",
@@ -58,14 +59,35 @@ module.exports = {
           filename: "fonts/[name][ext]",
         },
       },
-      // {
-      //   test: /\.css$/, // Обробка файлів CSS
-      //   use: ["style-loader", "css-loader"], // Використання style-loader для включення стилів у HTML та css-loader для обробки CSS
-      // },
-      // {
-      //   test: /\.(png|svg|jpg|gif)$/, // Обробка зображень
-      //   use: ["file-loader"], // Використання file-loader для завантаження файлів
-      // },
+      {
+        test: /\.(png|svg|jpg|gif)$/, // Обробка зображень
+        type: "asset/resource",
+        use: [
+          {
+            loader: "image-webpack-loader", // Використання file-loader для завантаження файлів
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.9],
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75,
+              },
+            },
+          },
+        ],
+      },
     ],
   },
 };
