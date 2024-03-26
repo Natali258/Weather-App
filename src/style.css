@@ -1,6 +1,8 @@
 @import "libs/normalize.css";
+@import "./css/_fonts.css";
 
 body {
+  font-family: "Lato";
   background-color: aquamarine;
   user-select: none;
 }

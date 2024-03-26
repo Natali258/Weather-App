@@ -51,6 +51,13 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.ttf$/,
+        type: "asset/resource",
+        generator: {
+          filename: "fonts/[name][ext]",
+        },
+      },
       // {
       //   test: /\.css$/, // Обробка файлів CSS
       //   use: ["style-loader", "css-loader"], // Використання style-loader для включення стилів у HTML та css-loader для обробки CSS
